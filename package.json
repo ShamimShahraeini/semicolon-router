@@ -1,0 +1,15 @@
+{
+  "name": "@ShamimShahraeini/semicolon-router",
+  "version": "4.0.2",
+  "description": "It's a simple nodejs router implementation :)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "author": "Shamim Shahraeini",
+  "repository": {
+    "url": "git://github.com/ShamimShahraeini/semicolon-router.git"
+  },
+  "license": "MIT"
+}
