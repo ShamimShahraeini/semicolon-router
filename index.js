@@ -13,8 +13,23 @@ class Router {
 
         const reqUrl = req.url.split('?')[0]
         const reqMethod = req.method
+        const globalRegex = new RegExp('\B\/\B', 'g')
+        const Regex = new RegExp('\/public', 'g')
+        const re = globalRegex.test(reqUrl)
+        const rere = Regex.test(reqUrl)
         // looking for route that was requested; if exists in routes list do the middlewares (and handler) by order
-        if (this.routes.hasOwnProperty(reqUrl) && this.routes[reqUrl].hasOwnProperty(reqMethod)) {
+        if (reqUrl === "/" || reqUrl === "/public") {
+            req.url = "index.html"
+            let middlewares = this.routes["/"][reqMethod].middlewares
+            let handler = this.routes["/"][reqMethod].handler
+            let firstMiddleware = prepareMiddlewares(middlewares, middlewares.length - 1, req, res, () => handler(req, res))
+            firstMiddleware()
+        } else if(re || rere){
+            let middlewares = this.routes["/"][reqMethod].middlewares
+            let handler = this.routes["/"][reqMethod].handler
+            let firstMiddleware = prepareMiddlewares(middlewares, middlewares.length - 1, req, res, () => handler(req, res))
+            firstMiddleware()
+        } else if (this.routes.hasOwnProperty(reqUrl) && this.routes[reqUrl].hasOwnProperty(reqMethod)) {
             let middlewares = this.routes[reqUrl][reqMethod].middlewares
             let handler = this.routes[reqUrl][reqMethod].handler
             let firstMiddleware = prepareMiddlewares(middlewares, middlewares.length - 1, req, res, () => handler(req, res))

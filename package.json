@@ -1,6 +1,6 @@
 {
   "name": "@ShamimShahraeini/semicolon-router",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "description": "It's a simple nodejs router implementation :)",
   "main": "index.js",
   "scripts": {
